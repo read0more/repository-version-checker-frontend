@@ -1,0 +1,35 @@
+.button {
+  width: 15em;
+  height: 3.5em;
+  font-size: 3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    lightgrey 50%
+  );
+  border-radius: 0.5em;
+  background-size: 250%;
+  transition: all 0.5s ease-in-out;
+}
+
+.button:hover {
+  background-position: 100%;
+}
+
+.text {
+  margin-right: 0.8em;
+}
+
+.scale-box {
+  transition: all 0.3s ease-in;
+}
+
+.button:hover .scale-box {
+  transform: scale(1.2);
+}

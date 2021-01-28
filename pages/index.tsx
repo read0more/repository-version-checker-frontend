@@ -1,7 +1,13 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import { useCallback, useEffect, useState } from "react";
+import LoginButton from "../components/LoginButton/LoginButton";
+import styles from "./Home.module.css";
 
 export default function Home() {
+  const [user, setUser] = useState<User>(null);
+
+  const logout = useCallback(() => setUser(null), []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -9,8 +15,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <a href="http://localhost:3000/auth/github/login">로그인</a>
-        <a href="http://localhost:3000/auth/logout">로그아웃</a>
+        {user ? <div>대시보드</div> : <LoginButton />}
       </main>
     </div>
   );
