@@ -1,7 +1,7 @@
 .button {
-  width: 15em;
-  height: 3.5em;
-  font-size: 3rem;
+  max-width: 80vw;
+  height: 90px;
+  font-size: 2rem;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -27,9 +27,16 @@
 }
 
 .scale-box {
+  margin: 0 1.3em;
   transition: all 0.3s ease-in;
 }
 
 .button:hover .scale-box {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 480px) {
+  .button {
+    font-size: 1.5em;
+  }
 }
