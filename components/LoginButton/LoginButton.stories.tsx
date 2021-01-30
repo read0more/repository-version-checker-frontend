@@ -7,6 +7,6 @@ export default {
   title: "로그인 버튼",
 };
 
-const Template = () => <LoginButton />;
+const Template = () => <LoginButton loginUrl={""} />;
 
 export const Default = Template.bind({});
