@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import styles from "./Header.module.css";
 
 interface Props {
   logout: () => void;
@@ -8,9 +9,15 @@ interface Props {
 
 const Header: React.FC<Props> = ({ logout, username, profileImage }) => {
   return (
-    <>
-      <button onClick={logout}>로그아웃</button>
-    </>
+    <header className={styles.header}>
+      <figure className={styles.figure}>
+        <img src={profileImage} className={styles.profile} alt="profile" />
+        <figcaption className={styles.username}>{username}</figcaption>
+      </figure>
+      <button className={styles.button} onClick={logout}>
+        <b>로그아웃</b>
+      </button>
+    </header>
   );
 };
 
