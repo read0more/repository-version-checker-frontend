@@ -11,7 +11,6 @@ let apolloClient;
 function createApolloClient() {
   let token;
 
-  console.log(process.env.GRAPHQL_URL);
   const httpLink = createHttpLink({
     uri: process.env.GRAPHQL_URL,
     credentials: "include",
