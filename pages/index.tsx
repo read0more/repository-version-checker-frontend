@@ -51,7 +51,7 @@ export default function Home({ loginUrl }) {
         <title>Repository version checker</title>
       </Head>
 
-      <main className={styles.main}>
+      <main>
         {user && localStorage.getItem("jwt") ? (
           <Dashboard logout={logout} user={user} />
         ) : (

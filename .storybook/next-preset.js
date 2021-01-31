@@ -17,7 +17,10 @@ module.exports = {
     // TypeScript with Next.js
     newConfig.module.rules.push({
       test: /\.(ts|tsx)$/,
-      include: [path.resolve(__dirname, "../components")],
+      include: [
+        path.resolve(__dirname, "../components"),
+        path.resolve(__dirname, "../pages"),
+      ],
       use: [
         {
           loader: "babel-loader",
@@ -43,7 +46,10 @@ module.exports = {
     // Then we tell webpack what to do with CSS modules
     newConfig.module.rules.push({
       test: /\.module\.css$/,
-      include: path.resolve(__dirname, "../components"),
+      include: [
+        path.resolve(__dirname, "../components"),
+        path.resolve(__dirname, "../pages"),
+      ],
       use: [
         "style-loader",
         {
