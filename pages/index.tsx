@@ -52,7 +52,6 @@ export default function Home({ loginUrl }) {
       variables: {
         createUserRepositoryInput: {
           repositoryUrl,
-          order: user.repositories.length + 1,
         },
       },
     });

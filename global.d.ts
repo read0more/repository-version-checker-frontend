@@ -14,7 +14,6 @@ interface Repository {
 
 interface UserRepository {
   repository?: Repository;
-  order: number;
   repositoryUrl: string;
 }
 

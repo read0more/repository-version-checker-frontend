@@ -13,7 +13,6 @@ export const FRAGMENT_USER_REPOSITORY = gql`
         publishedAt
       }
     }
-    order
     repositoryUrl
   }
 `;
