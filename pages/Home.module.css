@@ -1,5 +1,7 @@
+@value siteVeryLightGrey from '../styles/colors.css';
+
 .container {
   position: relative;
   height: 100vh;
-  background-color: #f9f9f9;
+  background-color: siteVeryLightGrey;
 }

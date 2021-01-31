@@ -1,8 +1,10 @@
+@value siteWhite, siteLightRed from '../../styles/colors.css';
+
 .header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: white;
+  background-color: siteWhite;
   padding: 0 1em;
 }
 
@@ -30,7 +32,7 @@
     120deg,
     transparent 0%,
     transparent 50%,
-    #ff4500 50%
+    siteLightRed 50%
   );
   border-radius: 0.5em;
   background-size: 250%;
@@ -39,5 +41,5 @@
 
 .button:hover {
   background-position: 100%;
-  color: white;
+  color: siteWhite;
 }
