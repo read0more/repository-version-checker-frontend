@@ -1,0 +1,18 @@
+@value siteLightGrey from '../../styles/colors.css';
+
+.input {
+  width: 20vw;
+  min-width: 200px;
+  display: block;
+  margin: auto;
+  margin-top: 2em;
+  border: none;
+  border: siteLightGrey 1px solid;
+  border-radius: 5px;
+  padding: 1em;
+  margin-top: 2em;
+}
+
+.input:focus {
+  outline: none;
+}
