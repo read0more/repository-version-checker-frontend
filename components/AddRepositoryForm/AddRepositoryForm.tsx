@@ -30,24 +30,21 @@ const AddRepositoryForm = () => {
     },
   });
 
-  const handleSubmit = useCallback((repositoryUrl) => {
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
     createUserRepository({
       variables: {
         createUserRepositoryInput: {
-          repositoryUrl,
+          repositoryUrl: inputEl.current.value,
         },
       },
     });
+
+    inputEl.current.value = "";
   }, []);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleSubmit(inputEl.current.value);
-        inputEl.current.value = "";
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <input
         type="url"
         ref={inputEl}
