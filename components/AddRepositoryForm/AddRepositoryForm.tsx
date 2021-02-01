@@ -1,12 +1,44 @@
-import React, { useRef } from "react";
+import { useMutation } from "@apollo/client";
+import React, { useCallback, useRef } from "react";
+import { CREATE_USER_REPOSITORY } from "../../apollo/mutation";
+import { ME } from "../../apollo/query";
+import { Me } from "../../apollo/__generated__/Me";
 import styles from "./AddRepositoryForm.module.css";
 
-interface Props {
-  handleSubmit: (repositoryUrl: string) => void;
-}
-
-const AddRepositoryForm: React.FC<Props> = ({ handleSubmit }) => {
+const AddRepositoryForm = () => {
   const inputEl = useRef<HTMLInputElement>();
+  const [createUserRepository, data] = useMutation(CREATE_USER_REPOSITORY, {
+    update(cache, { data }) {
+      const newUserRepository = data?.createUserRepository;
+      const existingMe = cache.readQuery<Me>({
+        query: ME,
+      });
+
+      if (existingMe && newUserRepository) {
+        const newRepositories = [
+          ...existingMe.me.repositories,
+          newUserRepository,
+        ];
+
+        cache.writeQuery({
+          query: ME,
+          data: {
+            me: { ...existingMe.me, repositories: newRepositories },
+          },
+        });
+      }
+    },
+  });
+
+  const handleSubmit = useCallback((repositoryUrl) => {
+    createUserRepository({
+      variables: {
+        createUserRepositoryInput: {
+          repositoryUrl,
+        },
+      },
+    });
+  }, []);
 
   return (
     <form

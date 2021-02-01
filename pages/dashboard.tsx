@@ -1,14 +1,14 @@
 import React from "react";
+import { Me_me } from "../apollo/__generated__/Me";
 import AddRepositoryForm from "../components/AddRepositoryForm/AddRepositoryForm";
 import Header from "../components/Header/Header";
 
 interface Props {
-  handleSubmit: (repositoryUrl: string) => void;
   logout: () => void;
-  user: User;
+  user: Me_me;
 }
 
-const Dashboard: React.FC<Props> = ({ handleSubmit, logout, user }) => {
+const Dashboard: React.FC<Props> = ({ logout, user }) => {
   return (
     <>
       <Header
@@ -16,7 +16,7 @@ const Dashboard: React.FC<Props> = ({ handleSubmit, logout, user }) => {
         username={user.username}
         profileImage={user.profileImage}
       />
-      <AddRepositoryForm handleSubmit={handleSubmit} />
+      <AddRepositoryForm />
     </>
   );
 };
