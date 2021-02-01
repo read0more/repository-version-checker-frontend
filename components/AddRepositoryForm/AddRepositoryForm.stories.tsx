@@ -7,6 +7,6 @@ export default {
   title: "레파지토리 추가 input form",
 };
 
-const Template = () => <AddRepositoryForm handleSubmit={() => {}} />;
+const Template = () => <AddRepositoryForm />;
 
 export const Default = Template.bind({});
