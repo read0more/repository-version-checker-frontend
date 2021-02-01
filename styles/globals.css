@@ -21,3 +21,11 @@ button {
   cursor: pointer;
   outline: none;
 }
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

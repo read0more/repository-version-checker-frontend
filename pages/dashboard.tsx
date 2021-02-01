@@ -2,6 +2,7 @@ import React from "react";
 import { Me_me } from "../apollo/__generated__/Me";
 import AddRepositoryForm from "../components/AddRepositoryForm/AddRepositoryForm";
 import Header from "../components/Header/Header";
+import RepositoryList from "../components/RepositoryList/RepositoryList";
 
 interface Props {
   logout: () => void;
@@ -16,7 +17,10 @@ const Dashboard: React.FC<Props> = ({ logout, user }) => {
         username={user.username}
         profileImage={user.profileImage}
       />
-      <AddRepositoryForm />
+      <section>
+        <AddRepositoryForm />
+        <RepositoryList userRepositories={user.repositories} />
+      </section>
     </>
   );
 };

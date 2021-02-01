@@ -1,0 +1,57 @@
+@value siteWhite, siteLightGrey, siteLightRed from '../../styles/colors.css';
+
+.repository {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid siteLightGrey;
+  border-radius: 5px;
+  padding: 1em;
+  background-color: siteWhite;
+}
+
+.title-box {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1em;
+}
+
+.times {
+  margin-left: 1em;
+  color: siteLightRed;
+  cursor: pointer;
+}
+
+.list:before,
+.list li:not(:last-child):after {
+  content: "";
+  display: block;
+  position: relative;
+  left: -1em;
+  width: calc(100% + 2em);
+  border-bottom: 1px solid siteLightGrey;
+  margin-bottom: 1em;
+}
+
+.list li:not(:last-child):after {
+  margin: 1em 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 1fr;
+}
+
+.date,
+.prerelease,
+.logo-box {
+  text-align: end;
+}
+
+.prerelease {
+  color: siteLightRed;
+}
+
+.logo {
+  cursor: pointer;
+}
