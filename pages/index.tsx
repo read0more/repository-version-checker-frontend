@@ -1,45 +1,36 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useCallback, useEffect, useState } from "react";
-import { FRAGMENT_USER_REPOSITORY } from "../apollo/fragment";
+import { ME } from "../apollo/query";
+import { CREATE_USER_REPOSITORY } from "../apollo/mutation";
 import LoginButton from "../components/LoginButton/LoginButton";
 import Dashboard from "./dashboard";
 import styles from "./Home.module.css";
-
-const ME = gql`
-  query Me {
-    me {
-      id
-      githubId
-      username
-      profileImage
-      repositories {
-        ...userRepository
-      }
-    }
-  }
-  ${FRAGMENT_USER_REPOSITORY}
-`;
-
-const CREATE_USER_REPOSITORY = gql`
-  mutation CreateUserRepository(
-    $createUserRepositoryInput: CreateUserRepositoryInput!
-  ) {
-    createUserRepository(
-      createUserRepositoryInput: $createUserRepositoryInput
-    ) {
-      ...userRepository
-    }
-  }
-  ${FRAGMENT_USER_REPOSITORY}
-`;
 
 export default function Home({ loginUrl }) {
   const [user, setUser] = useState<User>(null);
   const { loading, error, data: meData } = useQuery(ME);
   const [createUserRepository, { data: userRepositoryData }] = useMutation(
-    CREATE_USER_REPOSITORY
+    CREATE_USER_REPOSITORY,
+    {
+      update(cache, { data }) {
+        const newUserRepositoryFromResponse = data?.createUserRepository;
+        const existingMe = cache.readQuery({
+          query: ME,
+        });
+
+        if (existingMe && newUserRepositoryFromResponse) {
+          console.log(existingMe.me.repositories);
+          cache.writeQuery({
+            query: ME,
+            data: {
+              me: "",
+            },
+          });
+        }
+      },
+    }
   );
 
   const logout = useCallback(() => {
