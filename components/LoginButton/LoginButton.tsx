@@ -1,10 +1,14 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./LoginButton.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 
-const LoginButton = ({ loginUrl }) => (
+interface Props {
+  loginUrl: string;
+}
+
+const LoginButton = memo<Props>(({ loginUrl }) => (
   <Link href={loginUrl}>
     <button type="button" className={styles.button}>
       <div className={styles["scale-box"]}>
@@ -13,6 +17,6 @@ const LoginButton = ({ loginUrl }) => (
       </div>
     </button>
   </Link>
-);
+));
 
 export default LoginButton;

@@ -93,36 +93,37 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
         </div>
       </div>
       <ol className={styles.list}>
-        {userRepository.repository.versions.length === 0 && (
+        {userRepository.repository.versions.length === 0 ? (
           <b className={styles.nodata}>버전 정보가 없습니다.</b>
-        )}
-        {userRepository.repository.versions.map((version) => (
-          <li key={version.id}>
-            <div className={styles.item}>
-              <span className={styles.version}>
-                {version.url.split("/").pop()}
-              </span>
-              <span className={styles.date}>
-                {format(new Date(version.publishedAt), "yyyy-LL-dd")}
-              </span>
-              <b className={styles.prerelease}>
-                {version.prerelease ? "pre-release" : ""}
-              </b>
-              <div className={styles["logo-box"]}>
-                <Link href={version.url}>
-                  <a
-                    className={styles.logo}
-                    target="_blank"
-                    rel="noopener noreferer"
-                    onClick={handleLinkClick}
-                  >
-                    <FontAwesomeIcon icon={faGithub} />
-                  </a>
-                </Link>
+        ) : (
+          userRepository.repository.versions.map((version) => (
+            <li key={version.id}>
+              <div className={styles.item}>
+                <span className={styles.version}>
+                  {version.url.split("/").pop()}
+                </span>
+                <span className={styles.date}>
+                  {format(new Date(version.publishedAt), "yyyy-LL-dd")}
+                </span>
+                <b className={styles.prerelease}>
+                  {version.prerelease ? "pre-release" : ""}
+                </b>
+                <div className={styles["logo-box"]}>
+                  <Link href={version.url}>
+                    <a
+                      className={styles.logo}
+                      target="_blank"
+                      rel="noopener noreferer"
+                      onClick={handleLinkClick}
+                    >
+                      <FontAwesomeIcon icon={faGithub} />
+                    </a>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+        )}
       </ol>
     </li>
   );

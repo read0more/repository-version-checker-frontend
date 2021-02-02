@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import React, { useCallback, useRef } from "react";
+import React, { memo, useCallback, useRef } from "react";
 import { CREATE_USER_REPOSITORY } from "../../apollo/mutation";
 import { ME } from "../../apollo/query";
 import { Me } from "../../apollo/__generated__/Me";
@@ -7,7 +7,7 @@ import styles from "./AddRepositoryForm.module.css";
 import { useToasts } from "react-toast-notifications";
 import { CreateUserRepository } from "../../apollo/__generated__/CreateUserRepository";
 
-const AddRepositoryForm = () => {
+const AddRepositoryForm = memo(() => {
   const { addToast } = useToasts();
   const inputEl = useRef<HTMLInputElement>();
   const [createUserRepository, { loading }] = useMutation(
@@ -75,6 +75,6 @@ const AddRepositoryForm = () => {
       />
     </form>
   );
-};
+});
 
 export default AddRepositoryForm;

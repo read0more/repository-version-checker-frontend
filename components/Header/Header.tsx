@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./Header.module.css";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   profileImage: string;
 }
 
-const Header: React.FC<Props> = ({ logout, username, profileImage }) => {
+const Header = memo<Props>(({ logout, username, profileImage }) => {
   return (
     <header className={styles.header}>
       <figure className={styles.figure}>
@@ -19,6 +19,6 @@ const Header: React.FC<Props> = ({ logout, username, profileImage }) => {
       </button>
     </header>
   );
-};
+});
 
 export default Header;
