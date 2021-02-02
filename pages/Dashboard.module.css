@@ -3,4 +3,5 @@
 .section {
   padding: 1em;
   background-color: siteVeryLightGrey;
+  flex: 1;
 }

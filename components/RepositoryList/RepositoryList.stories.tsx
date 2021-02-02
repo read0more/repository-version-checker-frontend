@@ -3,10 +3,18 @@ import RepositoryList from "./RepositoryList";
 import "../../styles/globals.css";
 import * as RepositoryItemStories from "../RepositoryItem/RepositoryItem.stories";
 import { userRepository_repository } from "../../apollo/__generated__/userRepository";
+import { ToastProvider } from "react-toast-notifications";
 
 export default {
   component: RepositoryList,
   title: "레파지토리 리스트",
+  decorators: [
+    (Story) => (
+      <ToastProvider autoDismissTimeout={2000} placement={"top-left"}>
+        <Story />
+      </ToastProvider>
+    ),
+  ],
 };
 
 const Template = (args) => <RepositoryList {...args} />;

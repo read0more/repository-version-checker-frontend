@@ -10,12 +10,14 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_USER_REPOSITORY } from "../../apollo/mutation";
 import { ME } from "../../apollo/query";
 import { Me } from "../../apollo/__generated__/Me";
+import { useToasts } from "react-toast-notifications";
 
 interface Props {
   userRepository: userRepositoryInterface;
 }
 
 const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
+  const { addToast } = useToasts();
   const [removeUserRepository, { loading }] = useMutation(
     REMOVE_USER_REPOSITORY,
     {
@@ -32,6 +34,18 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
           });
           cache.evict({ id });
         }
+      },
+      onCompleted() {
+        addToast(
+          `${userRepository.repository.name}의 제거에 성공 하였습니다.`,
+          {
+            appearance: "success",
+            autoDismiss: true,
+          }
+        );
+      },
+      onError(error) {
+        addToast(error.message, { appearance: "error" });
       },
     }
   );

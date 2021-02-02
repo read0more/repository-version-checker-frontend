@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function Login() {
   const router = useRouter();
@@ -11,5 +12,5 @@ export default function Login() {
     router.push("/");
   });
 
-  return <div>로그인 중 입니다.</div>;
+  return <LoadingSpinner />;
 }

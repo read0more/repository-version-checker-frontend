@@ -5,10 +5,18 @@ import {
   userRepository,
   userRepository_repository_versions,
 } from "../../apollo/__generated__/userRepository";
+import { ToastProvider } from "react-toast-notifications";
 
 export default {
   component: RepositoryItem,
   title: "레파지토리 아이템",
+  decorators: [
+    (Story) => (
+      <ToastProvider autoDismissTimeout={2000} placement={"top-left"}>
+        <Story />
+      </ToastProvider>
+    ),
+  ],
 };
 
 let versions: userRepository_repository_versions[] = Array.from(
