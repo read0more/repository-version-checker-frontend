@@ -7,31 +7,36 @@ import styles from "./AddRepositoryForm.module.css";
 
 const AddRepositoryForm = () => {
   const inputEl = useRef<HTMLInputElement>();
-  const [createUserRepository, data] = useMutation(CREATE_USER_REPOSITORY, {
-    update(cache, { data }) {
-      const newUserRepository = data?.createUserRepository;
-      const existingMe = cache.readQuery<Me>({
-        query: ME,
-      });
-
-      if (existingMe && newUserRepository) {
-        const newRepositories = [
-          ...existingMe.me.repositories,
-          newUserRepository,
-        ];
-
-        cache.writeQuery({
+  const [createUserRepository, { loading }] = useMutation(
+    CREATE_USER_REPOSITORY,
+    {
+      update(cache, { data }) {
+        const newUserRepository = data?.createUserRepository;
+        const existingMe = cache.readQuery<Me>({
           query: ME,
-          data: {
-            me: { ...existingMe.me, repositories: newRepositories },
-          },
         });
-      }
-    },
-  });
+
+        if (existingMe && newUserRepository) {
+          const newRepositories = [
+            ...existingMe.me.repositories,
+            newUserRepository,
+          ];
+
+          cache.writeQuery({
+            query: ME,
+            data: {
+              me: { ...existingMe.me, repositories: newRepositories },
+            },
+          });
+        }
+      },
+    }
+  );
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
+    if (loading) return;
+
     createUserRepository({
       variables: {
         createUserRepositoryInput: {
@@ -50,6 +55,7 @@ const AddRepositoryForm = () => {
         ref={inputEl}
         className={styles.input}
         placeholder="Repository URL을 입력해주세요."
+        disabled={loading}
       />
     </form>
   );

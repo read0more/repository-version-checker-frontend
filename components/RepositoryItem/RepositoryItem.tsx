@@ -16,24 +16,36 @@ interface Props {
 }
 
 const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
-  const [removeUserRepository] = useMutation(REMOVE_USER_REPOSITORY, {
-    update(cache, { data }) {
-      const removedRepositoryUrl = data?.removeUserRepository.repositoryUrl;
-      const existingMe = cache.readQuery<Me>({
-        query: ME,
-      });
-
-      if (existingMe && removedRepositoryUrl) {
-        const test = cache.identify({
-          id: userRepository.repository.id,
-          __typename: "Repository",
+  const [removeUserRepository, { loading }] = useMutation(
+    REMOVE_USER_REPOSITORY,
+    {
+      update(cache, { data }) {
+        const removedRepositoryUrl = data?.removeUserRepository.repositoryUrl;
+        const existingMe = cache.readQuery<Me>({
+          query: ME,
         });
-        cache.evict({ id: test });
-      }
-    },
-  });
 
-  const handleClick = useCallback(() => {
+        if (existingMe && removedRepositoryUrl) {
+          const id = cache.identify({
+            id: userRepository.repository.id,
+            __typename: "Repository",
+          });
+          cache.evict({ id });
+        }
+      },
+    }
+  );
+
+  const handleLinkClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      loading && event.preventDefault();
+    },
+    []
+  );
+
+  const handleTimesClick = useCallback(() => {
+    if (loading) return;
+
     removeUserRepository({
       variables: {
         repositoryId: +userRepository.repository.id,
@@ -42,19 +54,27 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
   }, []);
 
   return (
-    <li className={styles.repository}>
+    <li
+      className={
+        loading ? `${styles.repository} ${styles.loading}` : styles.repository
+      }
+    >
       <div className={styles["title-box"]}>
-        <b>{userRepository.repository.name}</b>
+        <b className={styles.name}>{userRepository.repository.name}</b>
         <div>
           <Link href={userRepository.repositoryUrl}>
-            <a target="_blank" rel="noopener noreferer">
+            <a
+              target="_blank"
+              rel="noopener noreferer"
+              onClick={handleLinkClick}
+            >
               <FontAwesomeIcon icon={faGithub} className={styles.logo} />
             </a>
           </Link>
           <FontAwesomeIcon
             icon={faTimes}
             className={styles.times}
-            onClick={handleClick}
+            onClick={handleTimesClick}
           />
         </div>
       </div>
@@ -69,17 +89,18 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
                 {version.url.split("/").pop()}
               </span>
               <span className={styles.date}>
-                {format(new Date(version.publishedAt), "yyyy/LL/dd HH:mm:ss")}
+                {format(new Date(version.publishedAt), "yyyy-LL-dd")}
               </span>
-              <span className={styles.prerelease}>
-                {version.prerelease ? "prerelease" : ""}
-              </span>
+              <b className={styles.prerelease}>
+                {version.prerelease ? "pre-release" : ""}
+              </b>
               <div className={styles["logo-box"]}>
                 <Link href={version.url}>
                   <a
                     className={styles.logo}
                     target="_blank"
                     rel="noopener noreferer"
+                    onClick={handleLinkClick}
                   >
                     <FontAwesomeIcon icon={faGithub} />
                   </a>

@@ -39,14 +39,17 @@
 
 .item {
   display: grid;
-  grid-template-columns: 3fr 3fr 2fr 1fr;
+  grid-template-columns: 35% 30% 30% 5%;
+}
+
+.item *:not(:last-child) {
+  margin-right: 0.5em;
 }
 
 .date {
   text-align: start;
 }
 
-.prerelease,
 .logo-box {
   text-align: end;
 }
@@ -62,4 +65,16 @@
 .nodata {
   display: block;
   text-align: center;
+}
+
+.loading .name,
+.loading .logo,
+.loading .times,
+.loading .version,
+.loading .date,
+.loading .prerelease {
+  animation: glow 1.5s ease-in-out infinite;
+  background: #eee;
+  color: transparent;
+  cursor: progress;
 }
