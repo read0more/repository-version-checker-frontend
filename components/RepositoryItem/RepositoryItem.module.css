@@ -55,3 +55,8 @@
 .logo {
   cursor: pointer;
 }
+
+.nodata {
+  display: block;
+  text-align: center;
+}

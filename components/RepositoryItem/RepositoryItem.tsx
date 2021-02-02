@@ -59,16 +59,21 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
         </div>
       </div>
       <ol className={styles.list}>
+        {userRepository.repository.versions.length === 0 && (
+          <b className={styles.nodata}>버전 정보가 없습니다.</b>
+        )}
         {userRepository.repository.versions.map((version) => (
           <li key={version.id}>
             <div className={styles.item}>
-              <b className={styles.version}>{version.url.split("/").pop()}</b>
-              <b className={styles.date}>
+              <span className={styles.version}>
+                {version.url.split("/").pop()}
+              </span>
+              <span className={styles.date}>
                 {format(new Date(version.publishedAt), "yyyy/LL/dd HH:mm:ss")}
-              </b>
-              <b className={styles.prerelease}>
+              </span>
+              <span className={styles.prerelease}>
                 {version.prerelease ? "prerelease" : ""}
-              </b>
+              </span>
               <div className={styles["logo-box"]}>
                 <Link href={version.url}>
                   <a
