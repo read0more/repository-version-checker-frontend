@@ -42,7 +42,10 @@
   grid-template-columns: 3fr 3fr 2fr 1fr;
 }
 
-.date,
+.date {
+  text-align: start;
+}
+
 .prerelease,
 .logo-box {
   text-align: end;

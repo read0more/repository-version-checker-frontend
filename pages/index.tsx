@@ -17,7 +17,7 @@ export default function Home({ loginUrl }) {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Repository version checker</title>
       </Head>
@@ -26,7 +26,9 @@ export default function Home({ loginUrl }) {
         {data && !error ? (
           <Dashboard logout={logout} user={data.me} />
         ) : (
-          <LoginButton loginUrl={loginUrl} />
+          <div className={styles["login-container"]}>
+            <LoginButton loginUrl={loginUrl} />
+          </div>
         )}
       </main>
     </div>

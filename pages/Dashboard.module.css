@@ -1,0 +1,6 @@
+@value siteVeryLightGrey from '../styles/colors.css';
+
+.section {
+  padding: 1em;
+  background-color: siteVeryLightGrey;
+}
