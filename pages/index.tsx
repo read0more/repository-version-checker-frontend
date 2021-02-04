@@ -1,7 +1,7 @@
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { ME } from "../apollo/query";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import LoginButton from "../components/LoginButton/LoginButton";
@@ -12,7 +12,7 @@ import { useToasts } from "react-toast-notifications";
 
 export default function Home({ loginUrl }) {
   const { addToast } = useToasts();
-  const { loading, error, data, refetch } = useQuery<Me>(ME, {
+  const [getMe, { loading, error, data, refetch }] = useLazyQuery<Me>(ME, {
     onCompleted(data: Me) {
       addToast("로그인에 성공하였습니다.", {
         appearance: "success",
@@ -20,13 +20,23 @@ export default function Home({ loginUrl }) {
       });
     },
     onError({ message }) {
-      addToast(message, { appearance: "error" });
+      addToast("로그인에 실패하였습니다.", { appearance: "error" });
     },
   });
 
   const logout = useCallback(() => {
     localStorage.removeItem("jwt");
     refetch();
+    addToast("로그아웃 되었습니다.", {
+      appearance: "success",
+      autoDismiss: true,
+    });
+  }, [refetch]);
+
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      getMe();
+    }
   }, []);
 
   const render = () => {
