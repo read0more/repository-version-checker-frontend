@@ -1,9 +1,3 @@
 .login-container {
   height: 100vh;
 }
-
-.main {
-  flex-direction: column;
-  display: flex;
-  min-height: 100vh;
-}

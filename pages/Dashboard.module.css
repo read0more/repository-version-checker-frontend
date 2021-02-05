@@ -5,3 +5,9 @@
   background-color: siteVeryLightGrey;
   flex: 1;
 }
+
+.main {
+  flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+}

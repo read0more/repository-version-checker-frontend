@@ -9,7 +9,7 @@ export default function Login() {
     if (router.query.jwt) {
       localStorage.setItem("jwt", router.query.jwt as string);
     }
-    router.push("/");
+    router.push("/dashboard");
   });
 
   return <LoadingSpinner />;
