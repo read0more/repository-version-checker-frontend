@@ -18,7 +18,7 @@ interface Props {
 
 const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
   const { addToast } = useToasts();
-  const [removeUserRepository, { loading }] = useMutation(
+  const [removeUserRepository, { loading, error }] = useMutation(
     REMOVE_USER_REPOSITORY,
     {
       update(cache, { data }) {
@@ -44,11 +44,14 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
           }
         );
       },
-      onError(error) {
-        addToast(error.message, { appearance: "error" });
-      },
     }
   );
+
+  // useQuery의 options에 있는 onError 이용하려고 했으나 문제가 있는것으로 보여 직접 체크하게 변경
+  // https://github.com/apollographql/apollo-client/issues/5708
+  if (error) {
+    addToast(error.message, { appearance: "error" });
+  }
 
   const handleLinkClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {

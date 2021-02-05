@@ -10,7 +10,7 @@ import { CreateUserRepository } from "../../apollo/__generated__/CreateUserRepos
 const AddRepositoryForm = memo(() => {
   const { addToast } = useToasts();
   const inputEl = useRef<HTMLInputElement>();
-  const [createUserRepository, { loading }] = useMutation(
+  const [createUserRepository, { loading, error }] = useMutation(
     CREATE_USER_REPOSITORY,
     {
       update(cache, { data }) {
@@ -33,9 +33,6 @@ const AddRepositoryForm = memo(() => {
           });
         }
       },
-      onError(error) {
-        addToast(error.message, { appearance: "error" });
-      },
       onCompleted({
         createUserRepository: {
           repository: { name },
@@ -48,6 +45,12 @@ const AddRepositoryForm = memo(() => {
       },
     }
   );
+
+  // useQuery의 options에 있는 onError 이용하려고 했으나 문제가 있는것으로 보여 직접 체크하게 변경
+  // https://github.com/apollographql/apollo-client/issues/5708
+  if (error) {
+    addToast(error.message, { appearance: "error" });
+  }
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
