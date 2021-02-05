@@ -33,6 +33,7 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
             __typename: "Repository",
           });
           cache.evict({ id });
+          cache.gc();
         }
       },
       onCompleted() {

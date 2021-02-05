@@ -31,8 +31,6 @@ const userRepositories = Array.from(Array(6).keys())
     };
   });
 
-console.log(userRepositories);
-
 export const Default = Template.bind({});
 Default.args = {
   userRepositories,
