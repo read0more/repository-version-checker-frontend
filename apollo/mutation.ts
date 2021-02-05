@@ -15,8 +15,8 @@ export const CREATE_USER_REPOSITORY = gql`
 `;
 
 export const REMOVE_USER_REPOSITORY = gql`
-  mutation RemoveUserRepository($repositoryId: Int!) {
-    removeUserRepository(repositoryId: $repositoryId) {
+  mutation RemoveUserRepository($id: Int!) {
+    removeUserRepository(id: $id) {
       repositoryUrl
     }
   }

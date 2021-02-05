@@ -62,7 +62,7 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
 
     removeUserRepository({
       variables: {
-        repositoryId: +userRepository.repository.id,
+        id: +userRepository.id,
       },
     });
   }, []);
