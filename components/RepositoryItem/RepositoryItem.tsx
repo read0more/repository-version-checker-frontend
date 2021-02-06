@@ -5,11 +5,13 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styles from "./RepositoryItem.module.css";
 import Link from "next/link";
 import { format } from "date-fns";
-import { userRepository as userRepositoryInterface } from "../../apollo/__generated__/userRepository";
+import {
+  Me,
+  userRepository as userRepositoryInterface,
+} from "../../apollo/schemaTypes";
 import { useMutation } from "@apollo/client";
 import { REMOVE_USER_REPOSITORY } from "../../apollo/mutation";
 import { ME } from "../../apollo/query";
-import { Me } from "../../apollo/__generated__/Me";
 import { useToasts } from "react-toast-notifications";
 
 interface Props {
@@ -45,14 +47,11 @@ const RepositoryItem: React.FC<Props> = ({ userRepository }) => {
           }
         );
       },
+      onError(error) {
+        addToast(error.message, { appearance: "error" });
+      },
     }
   );
-
-  // useQuery의 options에 있는 onError 이용하려고 했으나 문제가 있는것으로 보여 직접 체크하게 변경
-  // https://github.com/apollographql/apollo-client/issues/5708
-  if (error) {
-    addToast(error.message, { appearance: "error" });
-  }
 
   const handleLinkClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {

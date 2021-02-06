@@ -1,5 +1,5 @@
 import React from "react";
-import { userRepository } from "../../apollo/__generated__/userRepository";
+import { userRepository } from "../../apollo/schemaTypes";
 import RepositoryItem from "../RepositoryItem/RepositoryItem";
 import styles from "./RepositoryList.module.css";
 

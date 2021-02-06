@@ -8,8 +8,8 @@
     "start": "next start",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "apollo:codegen:dev": "dotenv -e .env.local -- apollo client:codegen --target=typescript --globalTypesFile=./apollo/__generated__/globalTypes.ts ./__generated__",
-    "apollo:codegen": "apollo client:codegen --target=typescript --globalTypesFile=./apollo/__generated__/globalTypes.ts ./__generated__"
+    "apollo:codegen:dev": "dotenv -e .env.local -- apollo client:codegen --target=typescript --outputFlat ./apollo/schemaTypes.ts",
+    "apollo:codegen": "apollo client:codegen --target=typescript --outputFlat ./apollo/schemaTypes.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
