@@ -46,6 +46,7 @@ versions = [
 
 const defaultArgs: userRepository = {
   __typename: "UserRepository",
+  id: "1",
   repositoryUrl:
     "https://github.com/read0more/repository-version-checker-frontend",
   repository: {
