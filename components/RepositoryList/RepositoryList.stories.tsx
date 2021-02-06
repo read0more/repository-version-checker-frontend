@@ -2,8 +2,8 @@ import React from "react";
 import RepositoryList from "./RepositoryList";
 import "../../styles/globals.css";
 import * as RepositoryItemStories from "../RepositoryItem/RepositoryItem.stories";
-import { userRepository_repository } from "../../apollo/__generated__/userRepository";
 import { ToastProvider } from "react-toast-notifications";
+import { userRepository_repository } from "../../apollo/schemaTypes";
 
 export default {
   component: RepositoryList,

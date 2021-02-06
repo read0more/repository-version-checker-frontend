@@ -1,11 +1,11 @@
 import React from "react";
 import RepositoryItem from "./RepositoryItem";
 import "../../styles/globals.css";
+import { ToastProvider } from "react-toast-notifications";
 import {
   userRepository,
   userRepository_repository_versions,
-} from "../../apollo/__generated__/userRepository";
-import { ToastProvider } from "react-toast-notifications";
+} from "../../apollo/schemaTypes";
 
 export default {
   component: RepositoryItem,
