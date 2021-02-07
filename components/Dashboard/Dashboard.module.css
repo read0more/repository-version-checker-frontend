@@ -1,4 +1,4 @@
-@value siteVeryLightGrey from '../styles/colors.css';
+@value siteVeryLightGrey from '../../styles/colors.css';
 
 .section {
   padding: 1em;
