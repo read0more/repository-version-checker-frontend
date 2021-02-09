@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# repository-version-checker-site
 
-## Getting Started
+NestJS(with GraphQL, prisma), NextJS에 대해 적용해보기 위해 만들어본 토이프로젝트 입니다.
 
-First, run the development server:
+NestJS측 레파지토리: [repository-version-checker-site](https://github.com/read0more/repository-version-checker-site)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+# 데모
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[링크](https://repository-version-checker-frontend.vercel.app/)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+# 사이트 이용방법
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+깃허브로 로그인 후 아래와 같이 레파지토리 URL을 입력하면 됩니다.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![demo1.jpg][1]
 
-## Learn More
+# 사용기술
 
-To learn more about Next.js, take a look at the following resources:
+- Next.JS
+- apollo-client
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[1]: https://raw.githubusercontent.com/read0more/repository-version-checker-site/main/public/images/demo/demo.png
