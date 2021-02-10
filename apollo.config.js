@@ -7,6 +7,9 @@ module.exports = {
     service: {
       name: "sever",
       url: process.env.GRAPHQL_URL,
+      headers: {
+        "X-Introspection-Key": process.env.INTROSPECTION_KEY,
+      },
     },
   },
 };
