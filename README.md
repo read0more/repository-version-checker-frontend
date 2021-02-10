@@ -8,6 +8,8 @@ NestJS측 레파지토리: [repository-version-checker-site](https://github.com/
 
 [링크](https://repository-version-checker-frontend.vercel.app/)
 
+- repository-version-checker-site를 배포한 heroku의 무료계정 특징상 30분간 트래픽이 없으면 서버가 sleep되어 다시 켜지느라 느려서 첫 접속이 느릴 수 있습니다.
+
 # 사이트 이용방법
 
 깃허브로 로그인 후 아래와 같이 레파지토리 URL을 입력하면 됩니다.
