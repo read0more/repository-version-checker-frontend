@@ -2,7 +2,7 @@
 
 NestJS(with GraphQL, prisma), NextJS에 대해 적용해보기 위해 만들어본 토이프로젝트 입니다.
 
-NestJS측 레파지토리: [repository-version-checker-site](https://github.com/read0more/repository-version-checker-site)
+NestJS측 레파지토리: [repository-version-checker-server](https://github.com/read0more/repository-version-checker-server)
 
 # 데모
 
